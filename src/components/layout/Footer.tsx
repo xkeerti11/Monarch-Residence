@@ -89,7 +89,10 @@ export function Footer({ onOpenLegal }: { onOpenLegal: (type: LegalDocType) => v
 
       <div className="container footer-bottom">
         <div className="copyright-text">
-          <span>© 2026 Monarch Residences & Asset Holdings Private Limited. All rights reserved.</span>
+          <div className="copyright-line">
+            <span>© 2026 Monarch Residences & Asset Holdings Private Limited. All rights reserved.</span>
+            <span className="creator-badge">Made by <strong>Ktux</strong></span>
+          </div>
           <p className="disclaimer-text">
             Disclaimer: Images, plans, and specifications are conceptual representations and subject to architectural approvals. Registered under Real Estate (Regulation and Development) Act.
           </p>
