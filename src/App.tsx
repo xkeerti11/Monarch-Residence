@@ -64,17 +64,19 @@ function MainApp() {
       }
 
       gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((element) => {
-        const delay = Number(element.dataset.reveal || 0) / 1000
+        const rawDelay = Number(element.dataset.reveal || 0)
+        // Make delay crisp and immediate (max 60ms)
+        const delay = Math.min(rawDelay * 0.15, 60) / 1000
         gsap.fromTo(
           element,
-          { autoAlpha: 0, y: 24 },
+          { autoAlpha: 0, y: 12 },
           {
             autoAlpha: 1,
             y: 0,
             delay,
-            duration: 0.85,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: element, start: 'top 86%', once: true },
+            duration: 0.32,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: element, start: 'top 95%', once: true },
           }
         )
       })
@@ -85,9 +87,9 @@ function MainApp() {
           { clipPath: 'inset(100% 0 0 0)' },
           {
             clipPath: 'inset(0% 0 0 0)',
-            duration: 1.1,
-            ease: 'power2.inOut',
-            scrollTrigger: { trigger: element, start: 'top 78%', once: true },
+            duration: 0.45,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: element, start: 'top 94%', once: true },
           }
         )
       })
@@ -99,9 +101,9 @@ function MainApp() {
         const counter = { value: 0 }
         gsap.to(counter, {
           value,
-          duration: 2.2,
+          duration: 0.8,
           ease: 'power2.out',
-          scrollTrigger: { trigger: element, start: 'top 86%', once: true },
+          scrollTrigger: { trigger: element, start: 'top 95%', once: true },
           onUpdate: () => {
             element.textContent = `${prefix}${Math.round(counter.value)}${suffix}`
           },

@@ -11,16 +11,11 @@ interface HeroProps {
 }
 
 export function Hero({ onQuickSearch, onOpenBrochure }: HeroProps) {
-  const [ready, setReady] = useState(false)
+  const [ready, setReady] = useState(true)
   const [muted, setMuted] = useState(true)
   const [searchLocation, setSearchLocation] = useState('All')
   const [searchType, setSearchType] = useState('All')
   const { currency } = useCurrencyConverter()
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setReady(true), 120)
-    return () => window.clearTimeout(timer)
-  }, [])
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,7 +33,7 @@ export function Hero({ onQuickSearch, onOpenBrochure }: HeroProps) {
       </div>
 
       <div className="hero-content">
-        <div className="hero-badge-group" data-hero style={{ transitionDelay: '80ms' }}>
+        <div className="hero-badge-group" data-hero>
           <span className="hero-location-pill">
             <span className="pulse-dot" />
             FLAGSHIP LAUNCH · WORLI SEA FACE, MUMBAI
@@ -49,12 +44,12 @@ export function Hero({ onQuickSearch, onOpenBrochure }: HeroProps) {
         </div>
 
         <h1 className="display hero-title" id="hero-heading">
-          <span data-hero style={{ transitionDelay: '200ms' }}>ARCHITECTURAL</span>
-          <span data-hero style={{ transitionDelay: '320ms' }}>PERMANENCE</span>
-          <span data-hero style={{ transitionDelay: '440ms' }}>ON THE ARABIAN SEA.</span>
+          <span data-hero>ARCHITECTURAL</span>
+          <span data-hero>PERMANENCE</span>
+          <span data-hero>ON THE ARABIAN SEA.</span>
         </h1>
 
-        <p className="hero-copy" data-hero style={{ transitionDelay: '580ms' }}>
+        <p className="hero-copy" data-hero>
           Forty-two bespoke duplex sky mansions and coastal beach estates.
           Starting from {formatPrice(4.8, currency)} to {formatPrice(15.0, currency)}.
         </p>
@@ -64,7 +59,6 @@ export function Hero({ onQuickSearch, onOpenBrochure }: HeroProps) {
           className="hero-search-bar"
           onSubmit={handleSearchSubmit}
           data-hero
-          style={{ transitionDelay: '700ms' }}
           aria-label="Quick Residence Filter"
         >
           <div className="search-field">
@@ -101,7 +95,7 @@ export function Hero({ onQuickSearch, onOpenBrochure }: HeroProps) {
           </button>
         </form>
 
-        <div className="hero-cta-group" data-hero style={{ transitionDelay: '820ms' }}>
+        <div className="hero-cta-group" data-hero>
           <a
             className="btn btn-primary"
             href="#residences"
