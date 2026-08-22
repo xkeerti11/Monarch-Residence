@@ -207,6 +207,25 @@ export function BuildingCanvas3D() {
 
   const handleMouseUp = () => setIsDragging(false)
 
+  // Mobile Touch Handlers for 3D Orbiting
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true)
+      dragStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || e.touches.length !== 1) return
+    const dx = e.touches[0].clientX - dragStartRef.current.x
+    const dy = e.touches[0].clientY - dragStartRef.current.y
+    rotationRef.current.y += dx * 0.01
+    rotationRef.current.x = Math.max(0.1, Math.min(1.2, rotationRef.current.x + dy * 0.01))
+    dragStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+  }
+
+  const handleTouchEnd = () => setIsDragging(false)
+
   return (
     <div className="building-3d-wrapper" ref={containerRef} id="architecture">
       <div className="building-3d-header">
@@ -239,6 +258,10 @@ export function BuildingCanvas3D() {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
       >
         <div className="floor-controls" aria-label="Select architectural level">
           {floors.map((item, idx) => (
@@ -277,8 +300,9 @@ export function BuildingCanvas3D() {
           </div>
         </div>
 
-        <span className="canvas-hint">Drag cursor to orbit 360° wireframe · Click levels to inspect floor plates</span>
+        <span className="canvas-hint">Drag or swipe to orbit 360° wireframe · Tap levels to inspect floor plates</span>
       </div>
     </div>
   )
 }
+
