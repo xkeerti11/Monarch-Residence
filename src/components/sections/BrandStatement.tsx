@@ -6,21 +6,22 @@ export function BrandStatement() {
       <div className="container">
         <Reveal>
           <p className="statement-eyebrow">THE ARCHITECTURAL MANIFESTO</p>
-          <p className="display" id="statement-heading">
-            ARCHITECTURE IS NOT MERELY<br />
-            THE ENCLOSURE OF SPACE.
-          </p>
+          <h2 className="display statement-title" id="statement-heading">
+            <span>ARCHITECTURE IS NOT MERELY</span>
+            <span>THE ENCLOSURE OF SPACE.</span>
+          </h2>
         </Reveal>
         <Reveal delay={180}>
           <div className="statement-rule" />
         </Reveal>
         <Reveal delay={280}>
           <p className="display statement-secondary">
-            IT IS THE CURATION OF LIGHT,<br />
-            AIR, AND STILLNESS AMIDST<br />
-            THE METROPOLIS.
+            <span>IT IS THE CURATION OF LIGHT,</span>
+            <span>AIR, AND STILLNESS AMIDST</span>
+            <span>THE METROPOLIS.</span>
           </p>
         </Reveal>
+
 
         <Reveal delay={380} className="statement-narrative">
           <div className="narrative-grid">
